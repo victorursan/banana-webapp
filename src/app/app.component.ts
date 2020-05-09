@@ -1,10 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { KeycloakProfile } from 'keycloak-js';
+import { KeycloakService } from 'keycloak-angular';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'banana-webapp';
+  userDetails: KeycloakProfile;
+  navbarOpen = false;
+  logedIn: boolean;
+
+  constructor(private keycloakService: KeycloakService) {
+    this.keycloakService.isLoggedIn().then(isLogedIn => this.logedIn = isLogedIn);
+  }
+
+  ngOnInit() {
+    this.keycloakService.isLoggedIn().then(isLogedIn => {
+      this.logedIn = isLogedIn;
+      this.keycloakService.loadUserProfile().then(user => this.userDetails = user);
+    });
+  }
+
+  doLogout() {
+    this.keycloakService.logout();
+  }
+
+  doLogin() {
+    this.keycloakService.login();
+  }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
 }
