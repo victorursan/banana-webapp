@@ -11,10 +11,24 @@
   <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['/']" >Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="about" routerLinkActive="active">About Us</a>
+        <a class="nav-link" [routerLink]="['/about']" >About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/tickets']" >All tickets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/stickies']" >Stickies</a>
+      </li>
+      <li class="nav-item">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/personnel']" >Personnel</a>
+      </li>
+      <li class="nav-item">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/locations']" >Locations</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" *ngIf="!logedIn" (click)="doLogin()">Log In</a>
@@ -22,12 +36,6 @@
       <li class="nav-item">
         <a class="nav-link" *ngIf="logedIn" (click)="doLogout()">Log Out</a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="privacy" routerLinkActive="active">Privacy Policy</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="terms" routerLinkActive="active">Terms and Conditions</a>
-      </li> -->
     </ul>
   </div>
 </nav>

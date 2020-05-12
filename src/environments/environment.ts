@@ -7,7 +7,7 @@ import { KeycloakConfig } from 'keycloak-angular';
 const keycloakConfig: KeycloakConfig = {
   url: 'http://localhost:8080/auth',
   realm: 'banana-cartchufi',
-  clientId: 'cartchufi-service-fe'
+  clientId: 'cartchufi-service-fe',
 };
 
 export const environment = {

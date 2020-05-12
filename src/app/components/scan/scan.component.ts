@@ -28,14 +28,9 @@ export class ScanComponent implements OnInit {
   }
 
   actionSelected(actionId: string, stickyLocationId: string): void {
-    this.bananaHttpService.actionSelected({actionId, locationId: stickyLocationId})
-    .subscribe(i => {
-      console.log(i.ticketId);
-      this.router.navigate([`/ticket/${i.ticketId}`], {relativeTo: this.route, replaceUrl: true });
-    });
+    this.bananaHttpService.actionSelected({actionId: actionId, locationId: stickyLocationId})
+    .subscribe(ticket => {
+      this.router.navigate([`/ticket/${ticket.ticketId}`], {relativeTo: this.route, replaceUrl: true })
+    })
   }
-
-
-
-
 }

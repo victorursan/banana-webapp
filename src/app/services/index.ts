@@ -4,3 +4,8 @@ export * from './banana-http/role';
 export * from './banana-http/scan-sticky';
 export * from './banana-http/ticket';
 export * from './banana-http/select-action';
+export * from './banana-http/update-ticket-state';
+export * from './banana-http/personnel-filter';
+export * from './banana-http/personnel';
+export * from './banana-http/update-personnel';
+export * from './banana-http/add-location';

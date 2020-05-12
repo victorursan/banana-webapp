@@ -3,4 +3,7 @@ export * from './home/home.component';
 export * from './scan/scan.component';
 export * from './ticket/ticket.component';
 export * from './about/about.component';
-
+export * from './tickets/tickets.component';
+export * from './personnel/personnel.component';
+export * from './stickies/stickies.component';
+export * from './locations/locations.component';

@@ -7,19 +7,21 @@ import { AppComponent } from './app.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { environment } from '../environments/environment';
-import { HomeComponent, ScanComponent, TicketComponent, AboutComponent } from './components';
+import { HomeComponent, ScanComponent, TicketComponent, AboutComponent, TicketsComponent, PersonnelComponent, StickiesComponent, LocationsComponent } from './components';
 import { BananaHttpService } from './services';
 import { AppAuthGuard } from './app.authguard';
+import { FormsModule } from '@angular/forms';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ScanComponent, TicketComponent, AboutComponent],
+  declarations: [AppComponent, HomeComponent, ScanComponent, TicketComponent, AboutComponent, TicketsComponent, PersonnelComponent, StickiesComponent, LocationsComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     KeycloakAngularModule,
     AppRoutingModule,
+    FormsModule
   ],
   providers: [
     BananaHttpService,
@@ -31,7 +33,7 @@ const keycloakService: KeycloakService = new KeycloakService();
   entryComponents: [AppComponent]
 })
 export class AppModule implements DoBootstrap {
-  async ngDoBootstrap(app) {
+  ngDoBootstrap(app) {
     const { keycloakConfig } = environment;
     keycloakService
     .init({ config: keycloakConfig,

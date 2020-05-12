@@ -15,13 +15,14 @@ export class AppComponent implements OnInit {
   logedIn: boolean;
 
   constructor(private keycloakService: KeycloakService) {
-    this.keycloakService.isLoggedIn().then(isLogedIn => this.logedIn = isLogedIn);
   }
 
   ngOnInit() {
     this.keycloakService.isLoggedIn().then(isLogedIn => {
       this.logedIn = isLogedIn;
-      this.keycloakService.loadUserProfile().then(user => this.userDetails = user);
+      if (isLogedIn) {
+        this.keycloakService.loadUserProfile().then(user => this.userDetails = user);
+      };
     });
   }
 
