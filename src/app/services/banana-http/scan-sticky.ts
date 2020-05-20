@@ -1,8 +1,4 @@
-export interface Action {
-  id: string;
-  roleId: string;
-  message: string;
-}
+import { Action } from './sticky';
 
 export interface ScanSticky {
   id: string;

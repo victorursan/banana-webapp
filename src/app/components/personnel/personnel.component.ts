@@ -14,13 +14,13 @@ export class PersonnelComponent implements OnInit {
   locations$: Observable<Map<string, Location>>;
   roles$: Observable<Map<string, Role>>;
   operating = true;
-  username = "";
+  username = '';
 
   constructor(private route: ActivatedRoute, private bananaHttpService: BananaHttpService) { }
 
   ngOnInit(): void {
-    this.locations$ = this.listLocations();
-    this.roles$ = this.listRoles();
+    this.listLocations();
+    this.listRoles();
     this.refreshPersonnel(this.operating, this.username);
   }
 
@@ -28,9 +28,9 @@ export class PersonnelComponent implements OnInit {
     this.operating = operating;
     this.username = username;
     if (username.trim().length > 0) {
-     this.allPersonnel$ = this.listPersonnel({operating: operating, username: username});
+     this.allPersonnel$ = this.listPersonnel({operating, username});
     } else {
-      this.allPersonnel$ = this.listPersonnel({operating: operating});
+      this.allPersonnel$ = this.listPersonnel({operating});
     }
   }
 
@@ -47,11 +47,11 @@ export class PersonnelComponent implements OnInit {
   }
 
   private listLocations(): Observable<Map<string, Location>> {
-    return this.bananaHttpService.locations().pipe(map((locations) => new Map(locations.map((l) => [l.id, l]))));;
+    return this.locations$ = this.bananaHttpService.locations().pipe(map((locations) => new Map(locations.map((l) => [l.id, l]))));
   }
 
   private listRoles(): Observable<Map<string, Role>> {
-    return this.bananaHttpService.roles().pipe(map((roles) => new Map(roles.map((r) => [r.id, r]))));;
+    return this.roles$ = this.bananaHttpService.roles().pipe(map((roles) => new Map(roles.map((r) => [r.id, r]))));
   }
 
   private updatePersonnel(personnelId: string, updatePersonnel: UpdatePersonnel): Observable<Personnel> {

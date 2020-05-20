@@ -21,15 +21,16 @@ export class LocationsComponent implements OnInit {
   }
 
   listLocations(): void {
-    this.allLocations$ = this.bananaHttpService.locations()
-    this.allLocationsMap$ = this.allLocations$.pipe(map((locations) => new Map(locations.map((l) => [l.id, l]))));;
+    this.allLocations$ = this.bananaHttpService.locations();
+    this.allLocationsMap$ = this.allLocations$.pipe(map((locations) => new Map(locations.map((l) => [l.id, l]))));
   }
 
   onSubmit() {
     this.addLocation(this.newLocation).subscribe(l => console.log(l));
     this.newLocation = {location: '', parentLocation: ''};
   }
-  addLocation(addLocation: AddLocation): Observable<Location> {
+
+  private addLocation(addLocation: AddLocation): Observable<Location> {
     return this.bananaHttpService.addLocation(addLocation);
   }
 }

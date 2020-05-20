@@ -11,42 +11,57 @@ import { PersonnelFilter } from './personnel-filter';
 import { Personnel } from './personnel';
 import { UpdatePersonnel } from './update-personnel';
 import { AddLocation } from './add-location';
+import { Sticky } from './sticky';
+import { AddSticky } from './add-sticky';
+import { TicketFilter } from './ticket-filter';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class BananaHttpService {
-  constructor(private http: HttpClient) {}
+  backendUrl: string;
+
+  constructor(private http: HttpClient) { this.backendUrl = environment.backendConfig.url }
 
   locations(): Observable<Location[]> {
-    return this.http.get<Location[]>('http://localhost:8081/api/locations');
+    return this.http.get<Location[]>(`${this.backendUrl}/locations`);
   }
 
   roles(): Observable<Role[]> {
-    return this.http.get<Role[]>('http://localhost:8081/api/roles');
+    return this.http.get<Role[]>(`${this.backendUrl}/roles`);
   }
 
   scanSticky(stickyId: string): Observable<ScanSticky> {
     return this.http.get<ScanSticky>(
-      `http://localhost:8081/api/stickies/scan/${stickyId}`
+      `${this.backendUrl}/stickies/scan/${stickyId}`
     );
   }
 
   actionSelected(actionSelected: SelectAction): Observable<Ticket> {
     return this.http.post<Ticket>(
-      'http://localhost:8081/api/actions',
+      `${this.backendUrl}/actions`,
       actionSelected
     );
   }
 
   ticket(ticketId: string): Observable<Ticket> {
     return this.http.get<Ticket>(
-      `http://localhost:8081/api/tickets/${ticketId}`
+      `${this.backendUrl}/tickets/${ticketId}`
     );
   }
 
-  allTickets(): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>('http://localhost:8081/api/tickets');
+  allTickets(ticketFilter: TicketFilter): Observable<Ticket[]> {
+    const params = new HttpParams().append(
+      'user',
+      String(ticketFilter.user)
+    );
+    return this.http.get<Ticket[]>(`${this.backendUrl}/tickets`, {params});
+  }
+
+  allStickies(): Observable<Sticky[]> {
+    return this.http.get<Sticky[]>(`${this.backendUrl}/stickies`);
   }
 
   ticketUpdate(
@@ -54,7 +69,7 @@ export class BananaHttpService {
     ticketUpdate: UpdateTicketState
   ): Observable<Ticket> {
     return this.http.put<Ticket>(
-      `http://localhost:8081/api/tickets/${ticketId}`,
+      `${this.backendUrl}/tickets/${ticketId}`,
       ticketUpdate
     );
   }
@@ -67,17 +82,21 @@ export class BananaHttpService {
     if (personnelFilter.username) {
       params = params.append('username', personnelFilter.username);
     }
-    return this.http.get<Personnel[]>('http://localhost:8081/api/personnel', {
-      params: params,
+    return this.http.get<Personnel[]>(`${this.backendUrl}/personnel`, {
+      params,
     });
   }
 
   updatePersonnel(personnelId: string, updatePersonnel: UpdatePersonnel): Observable<Personnel> {
-    return this.http.put<Personnel>(`http://localhost:8081/api/personnel/${personnelId}`, updatePersonnel);
+    return this.http.put<Personnel>(`${this.backendUrl}/personnel/${personnelId}`, updatePersonnel);
   }
 
   addLocation(addLocation: AddLocation): Observable<Location> {
-    return this.http.post<Location>('http://localhost:8081/api/locations', addLocation);
+    return this.http.post<Location>(`${this.backendUrl}/locations`, addLocation);
+  }
+
+  addSticky(addSticky: AddSticky): Observable<Sticky> {
+    return this.http.post<Sticky>(`${this.backendUrl}/stickies`, addSticky);
   }
 
 }

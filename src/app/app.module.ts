@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 import { environment } from '../environments/environment';
-import { HomeComponent, ScanComponent, TicketComponent, AboutComponent, TicketsComponent, PersonnelComponent, StickiesComponent, LocationsComponent } from './components';
+import { HomeComponent, ScanComponent, TicketComponent, AboutComponent, TicketsComponent, PersonnelComponent,
+   StickiesComponent, LocationsComponent, MyTicketsComponent } from './components';
 import { BananaHttpService } from './services';
 import { AppAuthGuard } from './app.authguard';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
 const keycloakService: KeycloakService = new KeycloakService();
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ScanComponent, TicketComponent, AboutComponent, TicketsComponent, PersonnelComponent, StickiesComponent, LocationsComponent],
+  declarations: [AppComponent, HomeComponent, ScanComponent, TicketComponent, AboutComponent, TicketsComponent,
+     PersonnelComponent, StickiesComponent, LocationsComponent, MyTicketsComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

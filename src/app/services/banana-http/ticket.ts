@@ -1,7 +1,7 @@
 export enum State {
-  Acquired = "Acquired",
-  Solved = "Solved",
-  Pending = "Pending"
+  Acquired = 'Acquired',
+  Solved = 'Solved',
+  Pending = 'Pending'
 }
 
 export interface Ticket {

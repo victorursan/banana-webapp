@@ -17,11 +17,11 @@ export class TicketsComponent implements OnInit {
   }
 
   listTickets(): Observable<Ticket[]> {
-    return (this.allTickets$ = this.bananaHttpService.allTickets());
+    return (this.allTickets$ = this.bananaHttpService.allTickets({user: false}));
   }
 
   ticketStateChanges(ticketId: string, newState: State): void {
-    this.bananaHttpService.ticketUpdate(ticketId, { newState: newState }).subscribe(newT => {
+    this.bananaHttpService.ticketUpdate(ticketId, { newState }).subscribe(newT => {
       console.log(newT);
     });
   }

@@ -9,3 +9,6 @@ export * from './banana-http/personnel-filter';
 export * from './banana-http/personnel';
 export * from './banana-http/update-personnel';
 export * from './banana-http/add-location';
+export * from './banana-http/sticky';
+export * from './banana-http/add-sticky';
+export * from './banana-http/ticket-filter';

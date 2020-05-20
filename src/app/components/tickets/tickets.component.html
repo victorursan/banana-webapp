@@ -4,9 +4,9 @@
       <li *ngFor="let ticket of allTickets">
         <a>{{ticket.message}}</a>
         <select (change)="ticketStateChanges(ticket.ticketId, $event.target.value)" [(value)]="ticket.state">
-          <option value="Pending"> Pending </option>
-          <option value="Acquired"> Acquired </option>
-          <option value="Solved"> Solved </option>
+          <option value="pending"> Pending </option>
+          <option value="acquired"> Acquired </option>
+          <option value="solved"> Solved </option>
         </select>
       </li>
     </div>

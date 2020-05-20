@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
       this.logedIn = isLogedIn;
       if (isLogedIn) {
         this.keycloakService.loadUserProfile().then(user => this.userDetails = user);
-      };
+      }
     });
   }
 
